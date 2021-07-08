@@ -1,9 +1,23 @@
 import fs from "fs/promises";
-import { locateCodeowners } from "./locateCodeowners";
+import path from "path";
+
+async function readCodeowners(filepath: string) {
+  try {
+    const contents = await fs.readFile(filepath, "utf8");
+    return contents;
+  } catch (err) {
+    console.error(
+      "Unable to read CODEOWNERS file. Are you in the root directory of the repo?"
+    );
+
+    process.exit(1);
+  }
+}
 
 export async function getCodeownerPatterns(): Promise<string[]> {
-  const codeownersPath = await locateCodeowners();
-  const contents = await fs.readFile(codeownersPath, "utf8");
+  const codeownersPath = path.resolve(process.cwd(), ".github/CODEOWNERS");
+
+  const contents = await readCodeowners(codeownersPath);
 
   return contents
     .split("\n")

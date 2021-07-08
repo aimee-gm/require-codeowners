@@ -1,6 +1,6 @@
-import glob from "glob-promise";
 import { getCodeownerPatterns } from "./getCodeownerPatterns";
 import { flatten } from "./helpers/flatten";
+import { globPromise } from "./helpers/glob";
 
 export async function checkCodeowners(targetGlob: string): Promise<void> {
   console.log(`Checking codeowner coverage for ${targetGlob}`);
@@ -9,11 +9,11 @@ export async function checkCodeowners(targetGlob: string): Promise<void> {
   const codeowners = await getCodeownerPatterns();
 
   // find all directories and files that match the input glob pattern
-  const found = await glob(targetGlob);
+  const found = await globPromise(targetGlob);
 
   // find all directories or files that are codeownered
   const covered = await Promise.all(
-    codeowners.map(async (pattern) => glob(pattern))
+    codeowners.map(async (pattern) => globPromise(pattern))
   );
 
   const list = flatten(covered);

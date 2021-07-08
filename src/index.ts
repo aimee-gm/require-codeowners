@@ -1,11 +1,14 @@
 #!/usr/bin/env node
 
-import { program } from "commander";
 import { checkCodeowners } from "./checkCodeowners";
 
-program
-  .command("check <glob>")
-  .description("check a glob for having explicit GitHub codeowners")
-  .action((glob: string) => checkCodeowners(glob));
+const args = process.argv.slice(2);
 
-program.parse(process.argv);
+const [pattern] = args;
+
+if (!pattern) {
+  console.error(`Usage: require-codeowners <pattern>`);
+  process.exit(1);
+}
+
+checkCodeowners(pattern);
