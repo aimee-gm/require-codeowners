@@ -1,0 +1,38 @@
+{
+  "name": "require-codeowners",
+  "version": "1.0.0",
+  "description": "CLI tool to ensure sub-folders are covered by explicit GitHub codeowners",
+  "main": "./dist/index.js",
+  "repository": "https://github.com/aimee-gm/require-codeowners.git",
+  "author": "Aimee Gamble-Milner",
+  "license": "MIT",
+  "scripts": {
+    "prepare": "husky install",
+    "build": "tsc",
+    "lint": "eslint"
+  },
+  "bin": {
+    "require-codeowners": "./dist/index.js"
+  },
+  "dependencies": {
+    "commander": "^8.0.0",
+    "find-up": "^5.0.0",
+    "glob": "^7.1.7",
+    "glob-promise": "^4.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^16.0.1",
+    "@typescript-eslint/eslint-plugin": "^4.28.2",
+    "@typescript-eslint/parser": "^4.28.2",
+    "eslint": "^7.30.0",
+    "husky": ">=6",
+    "lint-staged": ">=10",
+    "prettier": "^2.3.2",
+    "ts-node": "^10.0.0",
+    "typescript": "^4.3.5"
+  },
+  "lint-staged": {
+    "*.{ts,js,css,md}": "prettier --write",
+    "*.{ts,js}": "eslint --cache --fix"
+  }
+}
