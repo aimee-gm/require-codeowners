@@ -1,7 +1,9 @@
 import fs from "fs/promises";
+import { locateCodeowners } from "./locateCodeowners";
 
-export async function getCodeownerPatterns(path: string): Promise<string[]> {
-  const contents = await fs.readFile(path, "utf8");
+export async function getCodeownerPatterns(): Promise<string[]> {
+  const codeownersPath = await locateCodeowners();
+  const contents = await fs.readFile(codeownersPath, "utf8");
 
   return contents
     .split("\n")
