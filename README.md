@@ -10,7 +10,7 @@ Executed from the respository you want to check:
 
 `yarn add -D require-codeowners`
 
-`yarn require-codeowners check "./packages/*"`
+`yarn require-codeowners "./packages/*"`
 
 If the command detects any matches to the glob that are _not_ codeowned, it will exit with a non-zero exit code and list the matches not covered.
 
