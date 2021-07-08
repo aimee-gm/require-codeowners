@@ -1,6 +1,6 @@
 {
   "name": "require-codeowners",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "CLI tool to ensure sub-folders are covered by explicit GitHub codeowners",
   "main": "./dist/index.js",
   "repository": "https://github.com/aimee-gm/require-codeowners.git",
